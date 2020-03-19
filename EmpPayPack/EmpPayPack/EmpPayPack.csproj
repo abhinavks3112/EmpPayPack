@@ -20,4 +20,9 @@
     <ProjectReference Include="..\EmpPayPack.Services\EmpPayPack.Services.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>
