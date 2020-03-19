@@ -236,7 +236,7 @@ namespace EmpPayPack.Persistence.Migrations
                         column: x => x.TaxYearId,
                         principalTable: "TaxYears",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

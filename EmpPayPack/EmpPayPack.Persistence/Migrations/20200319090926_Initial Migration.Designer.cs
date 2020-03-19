@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmpPayPack.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200319082539_Initial Migration")]
+    [Migration("20200319090926_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -404,7 +404,7 @@ namespace EmpPayPack.Persistence.Migrations
                     b.HasOne("EmpPayPack.Entity.TaxYear", "TaxYear")
                         .WithOne()
                         .HasForeignKey("EmpPayPack.Entity.PaymentRecord", "TaxYearId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

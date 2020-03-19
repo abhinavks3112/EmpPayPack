@@ -23,14 +23,11 @@ namespace EmpPayPack.Persistence.EntityConfigurations
                 .WithMany(e => e.PaymentRecords)
                 .HasForeignKey(p => p.EmployeeId);
             /*
-            * One Payment Record must have one tax year specified for it so configuring One To One relationship between Payment Record and PaymentRecords respectively.
-            * Also, deleting a Payment Record should not delete the Tax Year
+            * One Payment Record must have one tax year specified for it so configuring One To One relationship between Payment Record and Tax Year respectively.
            */
             builder.HasOne(p => p.TaxYear)
                 .WithOne()
-                .HasForeignKey<PaymentRecord>(p => p.TaxYearId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey<PaymentRecord>(p => p.TaxYearId);
 
             #endregion
 

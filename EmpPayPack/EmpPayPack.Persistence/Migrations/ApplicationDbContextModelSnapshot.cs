@@ -402,7 +402,7 @@ namespace EmpPayPack.Persistence.Migrations
                     b.HasOne("EmpPayPack.Entity.TaxYear", "TaxYear")
                         .WithOne()
                         .HasForeignKey("EmpPayPack.Entity.PaymentRecord", "TaxYearId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
