@@ -18,6 +18,7 @@ namespace EmpPayPack.Entity
         public DateTime DateJoined { get; set; }
         public string Designation { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
         public string NationalInsuranceNumber { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public StudentLoan StudentLoan { get; set; }
