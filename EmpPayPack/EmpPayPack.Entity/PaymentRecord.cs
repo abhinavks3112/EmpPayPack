@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmpPayPack.Entity
 {
@@ -11,7 +12,7 @@ namespace EmpPayPack.Entity
         public string NINO { get; set; }
         public DateTime PayDate { get; set; }
         public string PayMonth { get; set; }
-        public TaxYear TaxYearId { get; set; }
+        public int TaxYearId { get; set; }
         public TaxYear TaxYear { get; set; }
         public string TaxCode { get; set; }
         public decimal HourlyRate { get; set; }
