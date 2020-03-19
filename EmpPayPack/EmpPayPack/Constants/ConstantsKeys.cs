@@ -57,13 +57,24 @@ namespace EmpPayPack.Constants
         public const int LENGTH_100 = 100;
         public const int LENGTH_50 = 50;
         public const int LENGTH_2 = 2;
+        public const int LENGTH_0 = 0;
 
         #endregion
 
-        #region -------Miscellaneous -------
+        #region ------File Operation-------------- 
+
+        public const string FILE_EMPLOYEE_IMAGE_UPLOAD_DIR = @"images/employee";
+
+        // yyyy - year, mm - minute, ss - seconds, fff - miliseconds
+        public const string FILE_EMPLOYEE_IMAGE_NAME_DATE_FORMAT = "yyyymmssfff";
+
+        #endregion
+
+        #region -------Miscellaneous--------------
 
         public const string SINGLE_SPACE = " ";
         public const string DOT = ".";
+        public const string FORWARD_SLASH = "/";
 
         #endregion
     }

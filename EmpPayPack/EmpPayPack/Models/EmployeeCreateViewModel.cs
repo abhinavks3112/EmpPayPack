@@ -24,7 +24,7 @@ namespace EmpPayPack.Models
         public string FirstName { get; set; }
 
         [StringLength(ConstantsKeys.LENGTH_50),
-        Display(Name = ConstantsKeys.DISPLAYNAME_MIDDLE_NAME]
+        Display(Name = ConstantsKeys.DISPLAYNAME_MIDDLE_NAME)]
         public string MiddleName { get; set; }
 
         [Required(ErrorMessage = ConstantsKeys.ERRORMESSAGE_FIRST_NAME_REQUIRED),
@@ -58,6 +58,9 @@ namespace EmpPayPack.Models
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; }
 
         [Required(ErrorMessage = ConstantsKeys.ERRORMESSAGE_NATIONAL_INSURANCE_NUMBER_REQUIRED),
             StringLength(ConstantsKeys.LENGTH_50),
