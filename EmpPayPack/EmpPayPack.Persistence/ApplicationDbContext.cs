@@ -16,9 +16,8 @@ namespace EmpPayPack.Persistence
            
         }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<PaymentRecord> PaymentRecords { get; set; }
         public DbSet<TaxYear> TaxYears { get; set; }
-
+        public DbSet<PaymentRecord> PaymentRecords { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             /*
@@ -27,6 +26,7 @@ namespace EmpPayPack.Persistence
              * Once this line of code has been added, we no longer need to remember to add new type configuration registrations to the OnModelCreating method as our model grows.
              */
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(builder);
         }
     }
 }
