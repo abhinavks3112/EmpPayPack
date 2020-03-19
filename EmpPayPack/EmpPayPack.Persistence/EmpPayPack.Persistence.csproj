@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20200319085939_Initial Migration.Designer.cs" />
     <Compile Remove="Migrations\20200319090132_Initial Migration.cs" />
     <Compile Remove="Migrations\20200319090132_Initial Migration.Designer.cs" />
+    <Compile Remove="Migrations\20200319172118_AddColumnPhoneToEmployeesTable.cs" />
+    <Compile Remove="Migrations\20200319172118_AddColumnPhoneToEmployeesTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

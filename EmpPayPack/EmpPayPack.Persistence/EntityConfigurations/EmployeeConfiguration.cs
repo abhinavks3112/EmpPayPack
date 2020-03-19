@@ -50,6 +50,9 @@ namespace EmpPayPack.Persistence.EntityConfigurations
 
             builder.Property(e => e.MiddleName)
              .HasMaxLength(50);
+
+            builder.Property(e => e.Phone)
+                .HasMaxLength(50);
             
             #endregion
         }
