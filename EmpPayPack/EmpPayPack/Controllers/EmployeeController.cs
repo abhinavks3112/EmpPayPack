@@ -3,6 +3,7 @@ using EmpPayPack.Entity;
 using EmpPayPack.Models;
 using EmpPayPack.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,27 @@ namespace EmpPayPack.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private async Task<string> SaveImageOnServer(IFormFile imageUrl)
+        {
+            var uploadDir = ConstantsKeys.FILE_EMPLOYEE_IMAGE_UPLOAD_DIR;
+            var fileName = Path.GetFileNameWithoutExtension(imageUrl.FileName);
+            var extension = Path.GetExtension(imageUrl.FileName);
 
+            // Get the hosting environment
+            var webRootPath = _hostingEnvironment.WebRootPath;
+
+            // Generate a unique file by concatenating date time format to filename and its extension 
+            fileName = DateTime.UtcNow.ToString(ConstantsKeys.FILE_EMPLOYEE_IMAGE_NAME_DATE_FORMAT) + fileName + extension;
+
+            // Generate a complete path for storing image file on server
+            var path = Path.Combine(webRootPath, uploadDir, fileName);
+
+            // Copy the image and save it on server at the specified path, generated in previous step
+            await imageUrl.CopyToAsync(new FileStream(path, FileMode.Create));
+
+            // Url to store in database
+            return ConstantsKeys.FORWARD_SLASH + uploadDir + ConstantsKeys.FORWARD_SLASH + fileName;
+        }
         public EmployeeController(IEmployeeService employeeService, IWebHostEnvironment hostingEnvironment)
         {
             _employeeService = employeeService;
@@ -77,28 +98,85 @@ namespace EmpPayPack.Controllers
                 };
 
                 if(model.ImageUrl != null && model.ImageUrl.Length > ConstantsKeys.LENGTH_0)
-                {
-                    var uploadDir = ConstantsKeys.FILE_EMPLOYEE_IMAGE_UPLOAD_DIR;
-                    var fileName = Path.GetFileNameWithoutExtension(model.ImageUrl.FileName);
-                    var extension = Path.GetExtension(model.ImageUrl.FileName);
-
-                    // Get the hosting environment
-                    var webRootPath = _hostingEnvironment.WebRootPath;
-
-                    // Generate a unique file by concatenating date time format to filename and its extension 
-                    fileName = DateTime.UtcNow.ToString(ConstantsKeys.FILE_EMPLOYEE_IMAGE_NAME_DATE_FORMAT) + fileName + extension;
-
-                    // Generate a complete path for storing image file on server
-                    var path = Path.Combine(webRootPath, uploadDir, fileName);
-
-                    // Copy the image and save it on server at the specified path, generated in previous step
-                    await model.ImageUrl.CopyToAsync(new FileStream(path, FileMode.Create));
-
-                    // Url to store in database
-                    employee.ImageUrl = ConstantsKeys.FORWARD_SLASH + uploadDir + ConstantsKeys.FORWARD_SLASH + fileName;
+                {  
+                    employee.ImageUrl = await SaveImageOnServer(model.ImageUrl);
                 }
 
                 await _employeeService.CreateASync(employee);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var employee = _employeeService.GetById(id);
+            if(employee ==  null)
+            {
+                return NotFound();
+            }
+            var model = new EmployeeEditViewModel() {
+                Id = employee.Id,
+                EmployeeNumber = employee.EmployeeNumber,
+                FirstName = employee.FirstName,
+                MiddleName = employee.MiddleName,
+                LastName = employee.LastName,
+                Gender = employee.Gender,
+                Email = employee.Email,
+                Phone = employee.Phone,
+                DOB = employee.DOB,
+                DateJoined = employee.DateJoined,
+                Designation = employee.Designation,
+                NationalInsuranceNumber = employee.NationalInsuranceNumber,
+                PaymentMethod = employee.PaymentMethod,
+                UnionMember = employee.UnionMember,
+                StudentLoan = employee.StudentLoan,
+                Address = employee.Address,
+                City = employee.City,
+                PostCode = employee.PostCode
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        // To Prevent Cross-Site Request Forgery Attacks
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EmployeeEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var employee = _employeeService.GetById(model.Id);
+
+                if(employee == null)
+                {
+                    return NotFound();
+                }
+
+                employee.EmployeeNumber = model.EmployeeNumber;
+                employee.FirstName = model.FirstName;
+                employee.MiddleName = model.MiddleName;
+                employee.LastName = model.LastName;
+                employee.Gender = model.Gender;
+                employee.Email = model.Email;
+                employee.Phone = model.Phone;
+                employee.DOB = model.DOB;
+                employee.DateJoined = model.DateJoined;
+                employee.Designation = model.Designation;
+                employee.NationalInsuranceNumber = model.NationalInsuranceNumber;
+                employee.PaymentMethod = model.PaymentMethod;
+                employee.UnionMember = model.UnionMember;
+                employee.StudentLoan = model.StudentLoan;
+                employee.Address = model.Address;
+                employee.City = model.City;
+                employee.PostCode = model.PostCode;
+                
+                if(model.ImageUrl != null && model.ImageUrl.Length > ConstantsKeys.LENGTH_0)
+                {
+                    employee.ImageUrl = await SaveImageOnServer(model.ImageUrl);
+                }
+
+                await _employeeService.UpdateAsync(employee);
                 return RedirectToAction(nameof(Index));
             }
             return View();
