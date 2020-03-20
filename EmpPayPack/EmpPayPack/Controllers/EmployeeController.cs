@@ -181,5 +181,70 @@ namespace EmpPayPack.Controllers
             }
             return View();
         }
+    
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var employee = _employeeService.GetById(id);
+            if(employee == null)
+            {
+                return NotFound();
+            }
+            var model = new EmployeeDetailViewModel()
+            {
+                Id = employee.Id,
+                EmployeeNumber = employee.EmployeeNumber,
+                FullName = employee.FullName,
+                Gender = employee.Gender,
+                Email = employee.Email,
+                Phone = employee.Phone,
+                DOB = employee.DOB,
+                DateJoined = employee.DateJoined,
+                Designation = employee.Designation,
+                NationalInsuranceNumber = employee.NationalInsuranceNumber,
+                PaymentMethod = employee.PaymentMethod,
+                UnionMember = employee.UnionMember,
+                StudentLoan = employee.StudentLoan,
+                Address = employee.Address,
+                City = employee.City,
+                PostCode = employee.PostCode
+            };
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var employee = _employeeService.GetById(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            var model = new EmployeeDetailViewModel()
+            {
+                Id = employee.Id,
+                FullName = employee.FullName
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        // To Prevent Cross-Site Request Forgery Attacks
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(EmployeeDeleteViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var employee = _employeeService.GetById(model.Id);
+                if (employee == null)
+                {
+                    return NotFound();
+                }
+                await _employeeService.DeleteAsync(model.Id);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();            
+        }
     }
 }
