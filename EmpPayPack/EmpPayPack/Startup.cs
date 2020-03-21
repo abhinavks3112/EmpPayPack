@@ -12,6 +12,8 @@ using EmpPayPack.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using EmpPayPack.Services;
+using EmpPayPack.Services.Implementation;
 
 namespace EmpPayPack
 {
@@ -34,6 +36,15 @@ namespace EmpPayPack
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Adding employee service interface and its implementation to the service collection, which in turn will create and dispose of its instance
+            // as and when required
+            /*
+             * Adding a service to this method or in IServiceCollection helps in following:
+             * Injection of the service into the constructor of the class where it's used. 
+             * The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
+             */
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
