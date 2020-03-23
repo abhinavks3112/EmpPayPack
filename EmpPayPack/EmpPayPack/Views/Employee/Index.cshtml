@@ -53,17 +53,17 @@
                                     <td>@emp.Gender</td>
                                     <td>@emp.Designation</td>
                                     <td>@emp.City</td>
-                                    <td>@emp.DateJoined</td>
+                                    <td>@emp.DateJoined.ToString("dd/MM/yyyy")</td>
                                     <td>
-                                        <a class="text-primary" asp-action="Edit" asp-route-id="@emp.Id">
+                                        <a class="text-primary" asp-action="Edit" asp-route-id="@emp.Id" style="margin-right: 0.7em">
                                             <i class="fas fa-edit"></i>
                                             Edit
                                         </a>
-                                        <a class="text-success" asp-action="Detail" asp-route-id="@emp.Id">
+                                        <a class="text-success" asp-action="Detail" asp-route-id="@emp.Id" style="margin-right: 0.7em">
                                             <i class="fas fa-list"></i>
                                             Detail
                                         </a>
-                                        <a class="text-danger" asp-action="Delete" asp-route-id="@emp.Id">
+                                        <a class="text-danger" asp-action="Delete" asp-route-id="@emp.Id" style="margin-right: 0.7em">
                                             <i class="fas fa-trash-alt"></i>
                                             Delete
                                         </a>

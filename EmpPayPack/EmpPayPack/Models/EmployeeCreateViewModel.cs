@@ -78,7 +78,7 @@ namespace EmpPayPack.Models
         public UnionMember UnionMember { get; set; }
 
         [Required(ErrorMessage = ConstantsKeys.ERRORMESSAGE_ADDRESS_REQUIRED),
-            Display(Name = ConstantsKeys.DISPLAYNAME_PAYMENT_METHOD),
+            Display(Name = ConstantsKeys.DISPLAYNAME_ADDRESS),
            StringLength(ConstantsKeys.LENGTH_150)
             ]
         public string Address { get; set; }
