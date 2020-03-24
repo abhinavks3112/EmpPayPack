@@ -207,7 +207,8 @@ namespace EmpPayPack.Controllers
                 StudentLoan = employee.StudentLoan,
                 Address = employee.Address,
                 City = employee.City,
-                PostCode = employee.PostCode
+                PostCode = employee.PostCode,
+                ImageUrl = employee.ImageUrl
             };
             return View(model);
         }
@@ -221,7 +222,7 @@ namespace EmpPayPack.Controllers
             {
                 return NotFound();
             }
-            var model = new EmployeeDetailViewModel()
+            var model = new EmployeeDeleteViewModel()
             {
                 Id = employee.Id,
                 FullName = employee.FullName
