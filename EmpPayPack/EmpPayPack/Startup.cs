@@ -45,6 +45,7 @@ namespace EmpPayPack
              * The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
              */
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IPaymentCalculationService, PaymentCalculationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

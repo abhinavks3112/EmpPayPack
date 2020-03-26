@@ -35,6 +35,7 @@ namespace EmpPayPack.Constants
 
         #region -------Display Name--------------
 
+        public const string DISPLAYNAME_FULL_NAME = "Name";
         public const string DISPLAYNAME_FIRST_NAME = "First Name";
         public const string DISPLAYNAME_MIDDLE_NAME = "Middle Name";
         public const string DISPLAYNAME_LAST_NAME = "Last Name";
@@ -48,6 +49,12 @@ namespace EmpPayPack.Constants
         public const string DISPLAYNAME_ADDRESS = "Address";
         public const string DISPLAYNAME_CITY = "City";
         public const string DISPLAYNAME_POST_CODE = "Post Code";
+
+        public const string DISPLAYNAME_PAY_DATE = "Pay Date";
+        public const string DISPLAYNAME_PAY_MONTH = "Pay Month";
+        public const string DISPLAYNAME_TOTAL_EARNINGS = "Total Earnings";
+        public const string DISPLAYNAME_TOTAL_DEDUCTIONS = "Total Deductions";
+        public const string DISPLAYNAME_NET_PAYMENT = "Net Pay";
 
         #endregion
 
