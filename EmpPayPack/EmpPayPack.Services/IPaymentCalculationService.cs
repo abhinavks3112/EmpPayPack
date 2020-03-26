@@ -13,6 +13,7 @@ namespace EmpPayPack.Services
         PaymentRecord GetById(int id);
         IEnumerable<PaymentRecord> GetAll();
         IEnumerable<SelectListItem> GetAllTaxYear();
+        TaxYear GetTaxYearById(int id);
         decimal OvertimeHours(decimal hoursWorked, decimal contractualHours);
         decimal ContractualEarnings(decimal contractualHours, decimal hoursWorked, decimal hourlyRate);
         decimal OvertimeRate(decimal hourlyRate);
