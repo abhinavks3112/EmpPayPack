@@ -15,7 +15,6 @@ namespace EmpPayPack.Services.Implementation
         private const decimal ADDITIONAL_TAX_RATE = 0.45m;
 
         private decimal tax;
-        private decimal taxRate;
         public decimal TaxAmount(decimal totalAmount)
         {
             if(totalAmount <= NO_TAX_UPPER_LIMIT_PER_MONTH)
