@@ -29,9 +29,9 @@ namespace EmpPayPack.Entity
         public decimal? UnionFee { get; set; }
         // Optional(hence nullable) Student Loan Company
         // This is another way to declaring nullable variable
-        public Nullable<decimal> SLC { get; set; }
-        public Nullable<decimal> TotalEarnings { get; set; }
-        public Nullable<decimal> TotalDeductions { get; set; }
-        public Nullable<decimal> NetPayment { get; set; }
+        public decimal? SLC { get; set; }
+        public decimal TotalEarnings { get; set; }
+        public decimal TotalDeductions { get; set; }
+        public decimal NetPayment { get; set; }
     }
 }
