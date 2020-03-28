@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using EmpPayPack.Entity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EmpPayPack.Services
 {
@@ -16,5 +17,6 @@ namespace EmpPayPack.Services
         decimal UnionFees(int employeeId);
         decimal StudentLoanRepaymentAmount(int id, decimal totalAmount);
         IEnumerable<Employee> GetAll();
+        IEnumerable<SelectListItem> GetAllEmployeesForPayrollProcessing();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EmpPayPack.Entity;
 using EmpPayPack.Persistence;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,12 @@ namespace EmpPayPack.Services.Implementation
         }
 
         public decimal UnionFees(int id) => GetById(id).UnionMember == UnionMember.Yes ? 10m : 0m;
-        
+
+        public IEnumerable<SelectListItem> GetAllEmployeesForPayrollProcessing()
+        => GetAll().Select(emp => new SelectListItem()
+        {
+            Text = emp.FullName,
+            Value = emp.Id.ToString()
+        });
     }
 }
