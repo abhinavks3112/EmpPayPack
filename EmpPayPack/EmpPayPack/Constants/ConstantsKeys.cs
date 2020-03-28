@@ -55,6 +55,18 @@ namespace EmpPayPack.Constants
         public const string DISPLAYNAME_TOTAL_EARNINGS = "Total Earnings";
         public const string DISPLAYNAME_TOTAL_DEDUCTIONS = "Total Deductions";
         public const string DISPLAYNAME_NET_PAYMENT = "Net Pay";
+        public const string DISPLAYNAME_HOURLY_RATE = "Hourly Rate";
+        public const string DISPLAYNAME_OVERTIME_RATE = "Overtime Rate";
+        public const string DISPLAYNAME_HOURS_WORKED = "Hours Worked";
+        public const string DISPLAYNAME_CONTRACTUAL_HOURS = "Contractual Hours";
+        public const string DISPLAYNAME_CONTRACTUAL_EARNINGS = "Contractual Earnings";
+        public const string DISPLAYNAME_OVERTIME_HOURS = "Contractual Hours";
+        public const string DISPLAYNAME_OVERTIME_EARNINGS = "Overtime Earnings";
+        public const string DISPLAYNAME_UNION_FEE = "Union Fee";
+        public const string DISPLAYNAME_TAX_YEAR = "Tax Year";
+        public const string DISPLAYNAME_TAX_CODE = "Tax Code";
+        public const string DISPLAYNAME_EMPLOYEE_ID = "Employee Id";
+
 
         #endregion
 
@@ -82,6 +94,7 @@ namespace EmpPayPack.Constants
         public const string SINGLE_SPACE = " ";
         public const string DOT = ".";
         public const string FORWARD_SLASH = "/";
+        public const string DEFAULT_TAX_CODE = "1250L"; // UK 2019-20
 
         #endregion
     }
