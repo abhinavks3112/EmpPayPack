@@ -46,6 +46,8 @@ namespace EmpPayPack
              */
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IPaymentCalculationService, PaymentCalculationService>();
+            services.AddScoped<INationalInsuranceContributionService, NationalInsuranceContributionService>();
+            services.AddScoped<ITaxService, TaxService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

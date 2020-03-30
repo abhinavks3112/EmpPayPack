@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmpPayPack.Services.Implementation
 {
-    class NationalInsuranceContributionService : INationalInsuranceContributionService
+    public class NationalInsuranceContributionService : INationalInsuranceContributionService
     {
         private const decimal NO_NIC_RATE = 0.00m;
         private const decimal NIC_START_PRIMARY_THRESHOLD_LIMIT_PER_MONTH = 719.00m;
