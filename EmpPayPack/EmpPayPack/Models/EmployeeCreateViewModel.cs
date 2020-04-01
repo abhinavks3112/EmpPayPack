@@ -71,7 +71,7 @@ namespace EmpPayPack.Models
         [Display(Name = ConstantsKeys.DISPLAYNAME_PAYMENT_METHOD)]
         public PaymentMethod PaymentMethod { get; set; }
 
-        [Display(Name = ConstantsKeys.DISPLAYNAME_STUDENT_LOAN)]
+        [Display(Name = ConstantsKeys.DISPLAYNAME_SLC)]
         public StudentLoan StudentLoan { get; set; }
 
         [Display(Name = ConstantsKeys.DISPLAYNAME_UNION_MEMBER)]

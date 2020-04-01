@@ -56,12 +56,15 @@ namespace EmpPayPack.Models
         public decimal Tax { get; set; }
 
         // National Insurance Contribution
+        [Display(Name = ConstantsKeys.DISPLAYNAME_NIC)]
         public decimal NIC { get; set; }
         // Optional(hence nullable) Union Fee
         [Display(Name = ConstantsKeys.DISPLAYNAME_UNION_FEE)]
         public decimal? UnionFee { get; set; }
+
         // Optional(hence nullable) Student Loan Company
         // This is another way to declaring nullable variable
+        [Display(Name = ConstantsKeys.DISPLAYNAME_SLC)]
         public decimal? SLC { get; set; }
 
         [Display(Name = ConstantsKeys.DISPLAYNAME_TOTAL_EARNINGS)]

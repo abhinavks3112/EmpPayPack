@@ -65,7 +65,7 @@ namespace EmpPayPack.Services.Implementation
             }
             else if(hoursWorked > contractualHours)
             {
-                _overtimeHours = contractualHours - hoursWorked;
+                _overtimeHours = hoursWorked - contractualHours;
             }
             return _overtimeHours;
         }

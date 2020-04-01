@@ -60,13 +60,15 @@ namespace EmpPayPack.Constants
         public const string DISPLAYNAME_HOURS_WORKED = "Hours Worked";
         public const string DISPLAYNAME_CONTRACTUAL_HOURS = "Contractual Hours";
         public const string DISPLAYNAME_CONTRACTUAL_EARNINGS = "Contractual Earnings";
-        public const string DISPLAYNAME_OVERTIME_HOURS = "Contractual Hours";
+        public const string DISPLAYNAME_OVERTIME_HOURS = "Overtime Hours";
         public const string DISPLAYNAME_OVERTIME_EARNINGS = "Overtime Earnings";
         public const string DISPLAYNAME_UNION_FEE = "Union Fee";
         public const string DISPLAYNAME_TAX_YEAR = "Tax Year";
         public const string DISPLAYNAME_TAX_CODE = "Tax Code";
         public const string DISPLAYNAME_EMPLOYEE_ID = "Employee Id";
         public const string DISPLAYNAME_EMPLOYEES = "Employees";
+        public const string DISPLAYNAME_NIC = "National Insurance Contribution";
+        public const string DISPLAYNAME_SLC = "Student Loan Company";
 
         #endregion
 

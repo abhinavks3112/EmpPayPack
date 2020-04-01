@@ -21,11 +21,11 @@ namespace EmpPayPack.Services.Implementation
             }
            else if(totalAmount > NIC_START_PRIMARY_THRESHOLD_LIMIT_PER_MONTH && totalAmount <= NIC_UPPER_EARNING_LIMIT_PER_MONTH)
             {
-                NIC = (totalAmount - NIC_UPPER_EARNING_LIMIT_PER_MONTH) * NIC_ABOVE_PRIMARY_THRESHOLD_LIMIT_RATE;
+                NIC = (totalAmount - NIC_START_PRIMARY_THRESHOLD_LIMIT_PER_MONTH) * NIC_ABOVE_PRIMARY_THRESHOLD_LIMIT_RATE;
             }
            else if(totalAmount > NIC_UPPER_EARNING_LIMIT_PER_MONTH)
             {
-                NIC = ((NIC_UPPER_EARNING_LIMIT_PER_MONTH - NIC_UPPER_EARNING_LIMIT_PER_MONTH) * NIC_ABOVE_PRIMARY_THRESHOLD_LIMIT_RATE)
+                NIC = ((NIC_UPPER_EARNING_LIMIT_PER_MONTH - NIC_START_PRIMARY_THRESHOLD_LIMIT_PER_MONTH) * NIC_ABOVE_PRIMARY_THRESHOLD_LIMIT_RATE)
                     + ((totalAmount - NIC_UPPER_EARNING_LIMIT_PER_MONTH) * NIC_ABOVE_UPPER_EARNING_LIMIT_RATE);
             }
             return NIC;
