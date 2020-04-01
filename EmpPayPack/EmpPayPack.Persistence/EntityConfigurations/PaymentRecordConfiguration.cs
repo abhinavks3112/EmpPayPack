@@ -29,6 +29,9 @@ namespace EmpPayPack.Persistence.EntityConfigurations
                 .WithOne()
                 .HasForeignKey<PaymentRecord>(p => p.TaxYearId);
 
+            builder.HasIndex(p => p.TaxYearId)
+                .IsUnique(false);
+
             #endregion
 
             #region -----Column Type: Money--------
