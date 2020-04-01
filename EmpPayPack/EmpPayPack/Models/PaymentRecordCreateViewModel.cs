@@ -12,8 +12,12 @@ namespace EmpPayPack.Models
     public class PaymentRecordCreateViewModel
     {
         public int Id { get; set; }
-        [Display(Name = ConstantsKeys.DISPLAYNAME_EMPLOYEE_ID)]
+
+        [Display(Name = ConstantsKeys.DISPLAYNAME_EMPLOYEES)]
         public int EmployeeId { get; set; }
+
+        [Display(Name = ConstantsKeys.DISPLAYNAME_FULL_NAME)]
+        public string FullName { get; set; }
         public string NINO { get; set; }
 
         [DataType(DataType.Date), Display(Name = ConstantsKeys.DISPLAYNAME_PAY_DATE)]
@@ -22,7 +26,7 @@ namespace EmpPayPack.Models
         [Display(Name = ConstantsKeys.DISPLAYNAME_PAY_MONTH)]
         public string PayMonth { get; set; } = DateTime.Today.Month.ToString();
 
-        [Display(Name = ConstantsKeys.DISPLAYNAME_TOTAL_DEDUCTIONS)]
+        [Display(Name = ConstantsKeys.DISPLAYNAME_TAX_YEAR)]
         public int TaxYearId { get; set; }
         public TaxYear TaxYear { get; set; }
 
@@ -40,7 +44,7 @@ namespace EmpPayPack.Models
         public decimal HoursWorked { get; set; }
 
         [Display(Name = ConstantsKeys.DISPLAYNAME_CONTRACTUAL_HOURS)]
-        public decimal ContractualHours { get; set; }
+        public decimal ContractualHours { get; set; } = ConstantsKeys.DEFAULT_CONTRACTUAL_HOURS;
 
         [Display(Name = ConstantsKeys.DISPLAYNAME_CONTRACTUAL_EARNINGS)]
         public decimal ContractualEarnings { get; set; }

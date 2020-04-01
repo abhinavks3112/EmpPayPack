@@ -66,7 +66,7 @@ namespace EmpPayPack.Constants
         public const string DISPLAYNAME_TAX_YEAR = "Tax Year";
         public const string DISPLAYNAME_TAX_CODE = "Tax Code";
         public const string DISPLAYNAME_EMPLOYEE_ID = "Employee Id";
-
+        public const string DISPLAYNAME_EMPLOYEES = "Employees";
 
         #endregion
 
@@ -95,6 +95,7 @@ namespace EmpPayPack.Constants
         public const string DOT = ".";
         public const string FORWARD_SLASH = "/";
         public const string DEFAULT_TAX_CODE = "1250L"; // UK 2019-20
+        public const decimal DEFAULT_CONTRACTUAL_HOURS = 144m;
 
         #endregion
     }

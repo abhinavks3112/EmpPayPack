@@ -108,12 +108,10 @@ namespace EmpPayPack.Controllers
                     };
 
                     await _paymentService.CreateAsync(paymentRecord);
-                    return View(nameof(Index));
+                    return RedirectToAction(nameof(Index));
                 }
             }
-            
-            PopulateDataFieldsTaxYearsAndEmployees(model);
-            
+            PopulateDataFieldsTaxYearsAndEmployees(model);            
             return View();
         }
         

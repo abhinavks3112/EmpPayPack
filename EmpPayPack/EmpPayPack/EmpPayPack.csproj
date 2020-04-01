@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-EmpPayPack-5E0409B6-F327-4941-AC8E-33D778303211</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
@@ -22,7 +29,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="wwwroot\images\employee\" />
   </ItemGroup>
 
