@@ -1,0 +1,98 @@
+﻿@model PaymentRecordDetailViewModel
+
+@{ViewBag.Title = "Payslip";}
+
+@* Remove the current layout *@
+@{ Layout = null;}
+
+@* Use original default bootstrap layout *@
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div class="col-md-3 pl-0">
+                        <p class="mt-5 mb-2 font-weight-bold">EmpPayPack Ltd</p>
+                        <p>Fake Address<br />Fake City<br />FPC111</p>
+                    </div>
+                    <div class="col-md-3 pr-0">
+                        <p class="mt-5 mb-2 text-right font-weight-bold">Pay Date: @Model.PayDate.ToString("dd/MM/yyyy")</p>
+                        <p class="text-right">Tax Code: @Model.TaxCode<br />Year: @Model.Year</p>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row col-md-12">
+                    <div class="col-md-8">
+                        <h5>Employee's Name: @Model.FullName</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>National Insurance Number: @Model.NINO</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-responsive-md">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Earnings</th>
+                                <th>Hours</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                                <th>Deductions</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Basic</b></td>
+                                <td>@Model.ContractualHours.ToString("f")</td>
+                                <td>@Model.HourlyRate.ToString("f")</td>
+                                <td>@Model.ContractualEarnings.ToString("C", new CultureInfo("en-GB"))</td>
+                                <td><b>Tax</b></td>
+                                <td>@Model.Tax</td>
+                            </tr>
+                            <tr>
+                                <td><b>Overtime</b></td>
+                                <td>@Model.OvertimeHours.ToString("f")</td>
+                                <td>@Model.OvertimeRate.ToString("f")</td>
+                                <td>@Model.OvertimeEarnings.ToString("C", new CultureInfo("en-GB"))</td>
+                                <td><b>NIC</b></td>
+                                <td>@Model.NIC</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Union Fee</b></td>
+                                <td>@Model.UnionFee.Value.ToString("C", new CultureInfo("en-GB"))</td>
+                            </tr>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td>@Model.HoursWorked</td>
+                                <td></td>
+                                <td>@Model.TotalEarnings.ToString("C", new CultureInfo("en-GB"))</td>
+                                <td></td>
+                                <td>@Model.TotalDeductions.ToString("C", new CultureInfo("en-GB"))</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="table-dark"><b>Net Payment</b></td>
+                                <td>@Model.NetPayment.ToString("C", new CultureInfo("en-GB"))</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

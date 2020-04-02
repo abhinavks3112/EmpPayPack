@@ -49,7 +49,7 @@
                                         <td>@pay.TotalDeductions.ToString("C", new CultureInfo("en-GB"))</td>
                                         <td>@pay.NetPayment.ToString("C", new CultureInfo("en-GB"))</td>
                                         <td>
-                                            <a class="text-success" asp-action="Detail" asp-route-id="@pay.Id" style="margin-right: 0.7em">
+                                            <a class="text-success" asp-action="PaySlip" asp-route-id="@pay.Id" style="margin-right: 0.7em">
                                                 <i class="fas fa-list"></i>
                                                 Preview Payslip
                                             </a>
