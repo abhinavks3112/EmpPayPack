@@ -89,6 +89,8 @@ namespace EmpPayPack.Constants
         // yyyy - year, mm - minute, ss - seconds, fff - miliseconds
         public const string FILE_EMPLOYEE_IMAGE_NAME_DATE_FORMAT = "yyyymmssfff";
 
+        public const string FILE_PAYSLIP_PDF_NAME = "Payslip.pdf";
+
         #endregion
 
         #region -------Miscellaneous--------------
@@ -98,6 +100,7 @@ namespace EmpPayPack.Constants
         public const string FORWARD_SLASH = "/";
         public const string DEFAULT_TAX_CODE = "1250L"; // UK 2019-20
         public const decimal DEFAULT_CONTRACTUAL_HOURS = 144m;
+        public const string ACTION_METHOD_NAME_PAYSLIP = "Payslip";
 
         #endregion
     }

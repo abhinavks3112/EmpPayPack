@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EmpPayPack.Services;
 using EmpPayPack.Services.Implementation;
+using Rotativa.AspNetCore;
 
 namespace EmpPayPack
 {
@@ -79,6 +80,8 @@ namespace EmpPayPack
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
         }
     }
 }
