@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmpPayPack.Services.Implementation
 {
@@ -42,7 +43,10 @@ namespace EmpPayPack.Services.Implementation
             _context.Employees.Update(GetById(employeeId));
             await _context.SaveChangesAsync();
         }
-        public IEnumerable<Employee> GetAll() => _context.Employees;
+        public IEnumerable<Employee> GetAll() 
+            // AsNoTracking added for performance optimization, since its a read-only scenario and hence any change in entity is not possible
+            // and so no need for attaching tracking info to entity instance
+            => _context.Employees.AsNoTracking().OrderBy(e => e.FullName);
         public decimal StudentLoanRepaymentAmount(int id, decimal totalAmount)
         {
             var employee = GetById(id);
