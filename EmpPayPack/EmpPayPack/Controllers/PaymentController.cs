@@ -2,6 +2,7 @@
 using EmpPayPack.Entity;
 using EmpPayPack.Models;
 using EmpPayPack.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
 using System.Linq;
@@ -9,6 +10,15 @@ using System.Threading.Tasks;
 
 namespace EmpPayPack.Controllers
 {
+    #region Explaination
+    /*
+        1. [Authorize(Roles = "Admin, Manager")] means user can have either Admin or Manager Role
+        2.  [Authorize(Roles = "Admin")]
+            [Authorize(Roles = "Manager")]
+            means that user must have both roles(Admin and Manager) associated with him/her.
+    */
+    #endregion
+    [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN + "," + ConstantsKeys.USER_ROLE_MANAGER)]
     public class PaymentController : Controller
 
     {
@@ -86,6 +96,7 @@ namespace EmpPayPack.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpGet]
         public IActionResult Create()
         {
@@ -100,6 +111,7 @@ namespace EmpPayPack.Controllers
             model.AllEmployeesForPayrollProcessing = _employeeService.GetAllEmployeesForPayrollProcessing();
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PaymentRecordCreateViewModel model)
@@ -167,6 +179,7 @@ namespace EmpPayPack.Controllers
             
             return View(model);
         }
+        
         [HttpGet]
         public IActionResult Payslip(int Id)
         {
@@ -195,5 +208,6 @@ namespace EmpPayPack.Controllers
 
             return payslip;
         }
+    
     }
 }

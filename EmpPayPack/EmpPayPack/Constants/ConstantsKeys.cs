@@ -99,6 +99,15 @@ namespace EmpPayPack.Constants
 
         #endregion
 
+        #region-------User Roles--------
+
+        // From the seeding class in Persistence Layer
+        public const string USER_ROLE_ADMIN = "Admin";
+        public const string USER_ROLE_MANAGER = "Manager";
+        public const string USER_ROLE_STAFF = "Staff";
+
+        #endregion
+
         #region -------Miscellaneous--------------
 
         public const string SINGLE_SPACE = " ";

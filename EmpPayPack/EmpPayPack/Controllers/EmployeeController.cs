@@ -2,6 +2,7 @@
 using EmpPayPack.Entity;
 using EmpPayPack.Models;
 using EmpPayPack.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace EmpPayPack.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -62,12 +64,14 @@ namespace EmpPayPack.Controllers
             return View(EmployeeListPagination<EmployeeIndexViewModel>.Create(employees, pageNumber ?? 1, ConstantsKeys.PAGINATION_PAGE_SIZE));
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpGet]
         public IActionResult Create()
         {
             return View(new EmployeeCreateViewModel());
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpPost]
         // To Prevent Cross-Site Request Forgery Attacks
         [ValidateAntiForgeryToken]
@@ -109,6 +113,7 @@ namespace EmpPayPack.Controllers
             return View();
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN + "," + ConstantsKeys.USER_ROLE_MANAGER)]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -140,6 +145,7 @@ namespace EmpPayPack.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN + "," + ConstantsKeys.USER_ROLE_MANAGER)]
         [HttpPost]
         // To Prevent Cross-Site Request Forgery Attacks
         [ValidateAntiForgeryToken]
@@ -214,7 +220,7 @@ namespace EmpPayPack.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -231,6 +237,7 @@ namespace EmpPayPack.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ConstantsKeys.USER_ROLE_ADMIN)]
         [HttpPost]
         // To Prevent Cross-Site Request Forgery Attacks
         [ValidateAntiForgeryToken]
