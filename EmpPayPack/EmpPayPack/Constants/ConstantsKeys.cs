@@ -80,6 +80,8 @@ namespace EmpPayPack.Constants
         public const int LENGTH_2 = 2;
         public const int LENGTH_0 = 0;
 
+        public const int PAGINATION_PAGE_SIZE = 4;
+
         #endregion
 
         #region ------File Operation-------------- 

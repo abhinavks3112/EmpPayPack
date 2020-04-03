@@ -44,7 +44,7 @@ namespace EmpPayPack.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? pageNumber)
         {
             var employees = _employeeService.GetAll().Select(e => new EmployeeIndexViewModel()
             {
@@ -58,7 +58,8 @@ namespace EmpPayPack.Controllers
                 City = e.City
 
             }).ToList();
-            return View(employees);
+
+            return View(EmployeeListPagination<EmployeeIndexViewModel>.Create(employees, pageNumber ?? 1, ConstantsKeys.PAGINATION_PAGE_SIZE));
         }
 
         [HttpGet]
