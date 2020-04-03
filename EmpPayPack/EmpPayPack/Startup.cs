@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using EmpPayPack.Services;
 using EmpPayPack.Services.Implementation;
 using Rotativa.AspNetCore;
+using EmpPayPack.Constants;
 
 namespace EmpPayPack
 {
@@ -33,10 +34,33 @@ namespace EmpPayPack
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // RequireConfirmedAccount doesn't allow signin unless the mail id is confirmed, for testing purpose
+            // setting it to false
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultTokenProviders();
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password Setting
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = ConstantsKeys.SIGNIN_PASSWORD_LENGTH_REQUIRED;
+
+                // Default Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(ConstantsKeys.SIGNIN_LOCKOUT_TIME_IN_MINUTES_REQUIRED);
+                options.Lockout.MaxFailedAccessAttempts = ConstantsKeys.SIGNIN_MAX_FAILED_ACCESS_ATTEMPTS;
+                options.Lockout.AllowedForNewUsers = true;
+            });
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            
 
             // Adding employee service interface and its implementation to the service collection, which in turn will create and dispose of its instance
             // as and when required
@@ -52,7 +76,7 @@ namespace EmpPayPack
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +96,8 @@ namespace EmpPayPack
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            DataSeedingInitializer.UserAndRoleSeedAsync(userManager, roleManager).Wait();
 
             app.UseEndpoints(endpoints =>
             {
