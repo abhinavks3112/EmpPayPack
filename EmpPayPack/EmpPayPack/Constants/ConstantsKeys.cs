@@ -82,6 +82,10 @@ namespace EmpPayPack.Constants
 
         public const int PAGINATION_PAGE_SIZE = 4;
 
+        public const int SIGNIN_PASSWORD_LENGTH_REQUIRED = 6;
+        public const double SIGNIN_LOCKOUT_TIME_IN_MINUTES_REQUIRED = 10;
+        public const int SIGNIN_MAX_FAILED_ACCESS_ATTEMPTS = 5;
+
         #endregion
 
         #region ------File Operation-------------- 
